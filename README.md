@@ -1,5 +1,7 @@
 # Monitor your host
 
+> **NOTE:** Read in detail the motivation behind this repository in [this blog](https://suraj.io/post/2021/03/node-monitor/).
+
 Monitor you node using prometheus & node-exporter and visualise it using grafana. This repository has configurations for installing prometheus, node-exporter and grafana.
 
 ## Prerequisites
@@ -24,4 +26,3 @@ If you wish to install the configs in a different directory then execute the fol
 ```
 make INSTALL_PATH=<path to the directory> install-locally
 ```
-
