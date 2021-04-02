@@ -1,0 +1,39 @@
+---
+version: '3.8'
+
+services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+    - --path.rootfs=/host
+    - --no-collector.rapl
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+    - '/:/host:ro,rslave,Z'
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    user: root
+    ports:
+    - 9090:9090
+    command:
+    - --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+    - ./prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+    - ./data:/prometheus/data:Z
+    depends_on:
+    - node_exporter
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    ports:
+    - 3000:3000
+    user: root
+    volumes:
+    - ./grafana:/var/lib/grafana:Z
+    - ./datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+    - ./dashboard-definition.yaml:/etc/grafana/provisioning/dashboards/dashboard-definition.yaml:ro
+    - ./node-exporter.json:/tmp/node-exporter.json

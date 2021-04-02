@@ -1,0 +1,13 @@
+[Unit]
+Description=Monitor your PC
+Requires=/var/run/docker.sock
+AssertPathExists=$WORKDIR
+
+[Service]
+Restart=always
+WorkingDirectory=$WORKDIR
+ExecStart=$DOCKER_COMPOSE_PATH up --remove-orphans
+ExecStop=$DOCKER_COMPOSE_PATH down
+
+[Install]
+WantedBy=multi-user.target
