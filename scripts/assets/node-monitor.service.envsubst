@@ -5,6 +5,7 @@ AssertPathExists=$WORKDIR
 
 [Service]
 Restart=always
+RestartSec=3
 WorkingDirectory=$WORKDIR
 ExecStart=$DOCKER_COMPOSE_PATH up --remove-orphans
 ExecStop=$DOCKER_COMPOSE_PATH down

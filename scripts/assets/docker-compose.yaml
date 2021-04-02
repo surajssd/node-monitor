@@ -17,6 +17,7 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     user: root
+    restart: unless-stopped
     ports:
     - 9090:9090
     command:
@@ -29,6 +30,7 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana
+    restart: unless-stopped
     ports:
     - 3000:3000
     user: root
