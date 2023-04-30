@@ -24,6 +24,6 @@ function setup_monitoring_stack() {
   cp ./scripts/assets/docker-compose.yaml "${monitoring_data_dir}"
 
   # Install the dashboard
-  curl -sL -o "${monitoring_data_dir}"/node-exporter.json https://grafana.com/api/dashboards/1860/revisions/22/download
+  curl -sL -o "${monitoring_data_dir}"/node-exporter.json https://grafana.com/api/dashboards/1860/revisions/31/download
   cp ./scripts/assets/dashboard-definition.yaml "${monitoring_data_dir}"
 }
